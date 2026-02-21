@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Cầu Cần Thơ</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="toggle-theme" onclick="toggleTheme()">🌙 / ☀️</div>
+<!-- ÂM THANH NỀN -->
+<audio id="bgMusic" loop>
+  <source src="river-bridge.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">
+  🎵 
+</div>
+
+<header>
+  <h1>CẦU CẦN THƠ</h1>
+  <p>cầu có nhịp chính dài nhất ĐBSCL</p>
+</header>
+
+<div class="back-btn">
+  <a href="bridges.html">← Quay lại danh sách</a>
+</div>
+
+<section class="bridge-info card">
+  <img src="cantho1.jpg">
+<ul>
+<li><strong>Tên chính thức:</strong> Cầu Cần Thơ</li>
+<li><strong>Tên gọi dân gian:</strong> Cầu Cần Thơ</li>
+<li><strong>Vị trí:</strong> Nối Cần Thơ và Vĩnh Long, qua sông Hậu</li>
+<li><strong>Khởi công:</strong> 25/09/2004</li>
+<li><strong>Hoàn thành:</strong> 25/09/2010</li>
+<li><strong>Chiều dài:</strong> 15.850 m</li>
+<li><strong>Chiều rộng:</strong> 23,1 m</li>
+<li><strong>Tải trọng:</strong> HL93</li>
+<li><strong>Loại kiến trúc:</strong> Cầu dây văng</li>
+<li><strong>Tổng mức đầu tư:</strong> Hơn 4.800 tỷ đồng</li>
+<li><strong>Đơn vị thiết kế – thi công:</strong> Nhật Bản – Việt Nam</li>
+<li><strong>Ý nghĩa kinh tế – xã hội:</strong> Là biểu tượng giao thông hiện đại của miền Tây.</li>
+<li><strong>Sự kiện khánh thành:</strong> Khánh thành năm 2010</li>
+<li><strong>So sánh:</strong> Là cầu có nhịp chính dài nhất ĐBSCL.</li>
+</ul>
+
+</section>
+  <section class="section card">
+  <h2>🎥 Video giới thiệu cầu</h2>
+
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/tEsi1iAkGhs"
+      title="Video giới thiệu cầu"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p class="video-note">
+    Nếu video không hiển thị, xem trực tiếp tại:
+    <a href="https://youtu.be/tEsi1iAkGhs?si=8A-gVqBJiyySL5cR" target="_blank">
+      YouTube – Cầu Cần Thơ
+    </a>
+  </p>
+</section>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+}
+
+window.onload = function () {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+};
+</script>
+    <script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+// LẤY TRẠNG THÁI CŨ
+let musicOn = localStorage.getItem("music") !== "off";
+
+// KHỞI ĐỘNG
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇 ";
+  }
+});
+
+// BẬT / TẮT
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<footer>© 2025| Dự án Website nhóm 9 lớp 12D1 – Chủ đề 4 | Cây cầu nổi tiếng</footer>
+</body>
+</html>

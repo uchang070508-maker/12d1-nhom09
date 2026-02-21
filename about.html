@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Giới thiệu dự án</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- ÂM THANH NỀN -->
+<audio id="bgMusic" loop>
+  <source src="river-bridge.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">
+  🎵 
+</div>
+
+<!-- NÚT CHUYỂN GIAO DIỆN -->
+<div class="toggle-theme" onclick="toggleTheme()">🌙 / ☀️</div>
+
+<!-- ===== HEADER ===== -->
+<header class="main-header">
+  <h1>📘 GIỚI THIỆU WEBSITE</h1>
+  <p>Dự án tìm hiểu hệ thống cầu tiêu biểu tại Đồng bằng sông Cửu Long</p>
+</header>
+
+<!-- ===== NAVIGATION ===== -->
+ <nav class="main-nav">
+  <a href="index.html" >Trang chủ</a>
+  <a href="about.html"class="active">Giới thiệu</a>
+  <a href="bridges.html">Danh sách cầu</a>
+  <a href="map.html">Bản đồ</a>
+  <a href="timeline.html">Dòng thời gian</a>
+  <a href="gallery.html">Thư viện ảnh</a>
+  <a href="compare.html">So sánh</a>
+  <a href="contact.html">Liên hệ</a>
+  <a href="quiz.html">Quiz</a>
+</nav>
+<!-- ===== MỤC ĐÍCH WEBSITE ===== -->
+<section class="section">
+  <h2>🎯 Mục đích xây dựng website</h2>
+    <div class="card">
+  <p>
+    Website được xây dựng nhằm giới thiệu và nghiên cứu hệ thống các cây cầu
+    tiêu biểu tại khu vực <strong>Đồng bằng sông Cửu Long</strong>,
+    nơi có mạng lưới sông ngòi dày đặc và đóng vai trò quan trọng
+    trong phát triển giao thông, kinh tế và xã hội.
+  </p>
+  <p>
+    Thông qua website, người xem có thể tìm hiểu vị trí, đặc điểm kỹ thuật,
+    năm xây dựng, vai trò kinh tế cũng như ảnh hưởng của các cây cầu
+    đối với sự phát triển của toàn vùng.
+  </p>
+    </div>
+</section>
+
+<!-- ===== NHÓM THỰC HIỆN ===== -->
+<section class="section">
+  <h2>👥 Nhóm thực hiện</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Trần Hữu Vinh</h3>
+      <p>Phụ trách: Nội dung & tổng hợp thông tin</p>
+    </div>
+
+    <div class="card">
+      <h3>Lý Gia Hân</h3>
+      <p>Phụ trách: Thiết kế giao diện HTML / CSS</p>
+    </div>
+    
+<div class="card">
+      <h3>Võ Thị Như Ý</h3>
+      <p>Phụ trách: Bản đồ & Nội dung </p>
+    </div>
+    
+    <div class="card">
+      <h3>Nguyễn Thị Uyên Trang</h3>
+      <p>Phụ trách:  biểu đồ & JavaScript</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ĐỊA BÀN NGHIÊN CỨU ===== -->
+<section class="section">
+  <h2>🗺️ Địa bàn nghiên cứu</h2>
+  <div class="card">
+  <p>
+    Phạm vi nghiên cứu tập trung vào các tỉnh, thành phố thuộc khu vực
+    <strong>Đồng bằng sông Cửu Long</strong>, nơi có nhiều cây cầu lớn
+    bắc qua các con sông chính.
+  </p>
+
+  <ul style="line-height:1.8">
+    <li>📍 Tiền Giang</li>
+    <li>📍 Vĩnh Long</li>
+    <li>📍 Bến Tre</li>
+    <li>📍 Đồng Tháp</li>
+    <li>📍 Cần Thơ</li>
+    <li>📍 Long An</li>
+    <li>📍 Cà Mau</li>
+  </ul>
+
+  <p>
+    Các cây cầu tiêu biểu được nghiên cứu bao gồm:
+    Cầu Mỹ Thuận, Cầu Cần Thơ, Cầu Rạch Miễu, Cầu Cổ Chiên,
+    Cầu Hàm Luông, Cầu Mỹ Lợi, Cầu Năm Căn và Cầu Vàm Cống.
+  </p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>© 2025 | Dự án Website nhóm 9 lớp 12D1 – Chủ đề 4 | Cây cầu nổi tiếng</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- ===== SCRIPT DARK MODE ===== -->
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+}
+
+window.onload = function () {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+};
+</script>
+  <script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+// LẤY TRẠNG THÁI CŨ
+let musicOn = localStorage.getItem("music") !== "off";
+
+// KHỞI ĐỘNG
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇 ";
+  }
+});
+
+// BẬT / TẮT
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+</body>
+</html>

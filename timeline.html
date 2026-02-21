@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Timeline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="toggle-theme" onclick="toggleTheme()">🌙 / ☀️</div>
+<!-- ÂM THANH NỀN -->
+<audio id="bgMusic" loop>
+  <source src="river-bridge.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">
+  🎵 
+</div>
+
+  <header>
+  <h1>⏳ Dòng thời gian phát triển giao thông</h1>
+</header>
+   <nav class="main-nav">
+  <a href="index.html" >Trang chủ</a>
+  <a href="about.html">Giới thiệu</a>
+  <a href="bridges.html">Danh sách cầu</a>
+  <a href="map.html">Bản đồ</a>
+  <a href="timeline.html"class="active">Dòng thời gian</a>
+  <a href="gallery.html">Thư viện ảnh</a>
+  <a href="compare.html">So sánh</a>
+  <a href="contact.html">Liên hệ</a>
+  <a href="quiz.html">Quiz</a>
+</nav>
+  
+<main class="container">
+
+  <!-- GIỚI THIỆU -->
+  <section class="card">
+    <h2>🌊 Vai trò giao thông đường thủy</h2>
+    <p>
+      Đồng bằng sông Cửu Long có hệ thống sông ngòi chằng chịt, giao thông đường thủy
+      giữ vai trò then chốt trong vận chuyển hàng hóa, nông sản và kết nối các địa phương.
+      Việc xây dựng các cây cầu lớn đã đánh dấu bước chuyển quan trọng trong phát triển hạ tầng giao thông.
+    </p>
+  </section>
+    <!-- TIMELINE -->
+  <section class="card">
+    <h2>📅 Các mốc phát triển quan trọng</h2>
+
+    <div class="timeline">
+<div class="timeline-item">
+      <span class="timeline-year">Trước 1990</span>
+      <div class="timeline-content">
+      
+          <h3>🚤 Giao thông đường thủy là chủ yếu</h3>
+          <p>
+            Người dân di chuyển chủ yếu bằng ghe, tàu. Việc qua sông phụ thuộc vào phà,
+            gây hạn chế trong phát triển kinh tế và giao thương.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item">
+      <span class="timeline-year">2000</span>
+      <div class="timeline-content">
+          <h3>🌉 Cầu Mỹ Thuận</h3>
+          <p>
+            Cầu Mỹ Thuận là cầu dây văng đầu tiên của Việt Nam, nối Tiền Giang – Vĩnh Long,
+            mở ra thời kỳ phát triển mạnh mẽ hạ tầng giao thông miền Tây.
+          </p>
+        </div>
+      </div>
+<div class="timeline-item">
+      <span class="timeline-year">2009</span>
+      <div class="timeline-content">
+      
+          <h3>🌉 Cầu Cần Thơ</h3>
+          <p>
+            Cầu Cần Thơ bắc qua sông Hậu giúp thay thế phà Cần Thơ,
+            tăng tốc độ vận chuyển hàng hóa và thu hút đầu tư.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item">
+      <span class="timeline-year">2015</span>
+      <div class="timeline-content">
+          <h3>🌉 Cầu Rạch Miễu – Cổ Chiên</h3>
+          <p>
+            Các cầu này giúp kết nối Bến Tre, Trà Vinh, giảm phụ thuộc vào giao thông đường thủy,
+            thúc đẩy phát triển kinh tế – du lịch.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+      <span class="timeline-year">2018</span>
+      <div class="timeline-content">
+          <h3>🌉 Cầu Vàm Cống – Cao Lãnh</h3>
+          <p>
+            Hoàn thiện trục giao thông chiến lược, tăng cường liên kết vùng
+            giữa Đồng Tháp – An Giang – Cần Thơ.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item">
+      <span class="timeline-year">Hiện nay</span>
+      <div class="timeline-content">
+
+          <h3>🚀 Phát triển đồng bộ</h3>
+          <p>
+            Hệ thống cầu – đường – cảng thủy được đầu tư đồng bộ,
+            góp phần nâng cao đời sống người dân và hội nhập kinh tế.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+    <!-- ẢNH HƯỞNG KINH TẾ -->
+  <section class="card">
+    <h2>📈 Ảnh hưởng đến phát triển kinh tế vùng</h2>
+    <ul>
+      <li>✔ Rút ngắn thời gian vận chuyển hàng hóa, nông sản</li>
+      <li>✔ Thu hút đầu tư, phát triển công nghiệp và logistics</li>
+      <li>✔ Thúc đẩy du lịch sinh thái, thương mại</li>
+      <li>✔ Nâng cao chất lượng cuộc sống người dân</li>
+    </ul>
+  </section>
+
+
+</section>
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+}
+
+window.onload = function () {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+};
+</script>
+    <script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+// LẤY TRẠNG THÁI CŨ
+let musicOn = localStorage.getItem("music") !== "off";
+
+// KHỞI ĐỘNG
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇 ";
+  }
+});
+
+// BẬT / TẮT
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<footer>© 2025 | Dự án Website nhóm 9 lớp 12D1 – Chủ đề 4 | Cây cầu nổi tiếng</footer>
+</body>
+</html>

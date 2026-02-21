@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Hệ thống cầu tiêu biểu Đồng bằng sông Cửu Long</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<!-- ÂM THANH NỀN -->
+<audio id="bgMusic" loop>
+  <source src="river-bridge.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">
+  🎵 
+</div>
+
+<!-- ===== NÚT ĐỔI GIAO DIỆN ===== -->
+<div class="toggle-theme" onclick="toggleTheme()">🌙 / ☀️</div>
+<!-- ===== HEADER ===== -->
+<header class="main-header">
+  <h1>🌉 HỆ THỐNG CẦU TIÊU BIỂU</h1>
+  <p>Đồng bằng sông Cửu Long – Kết nối giao thông & phát triển kinh tế vùng</p>
+</header>
+
+<!-- ===== NAVIGATION ===== -->
+ <nav class="main-nav">
+  <a href="index.html"class="active" >Trang chủ</a>
+  <a href="about.html">Giới thiệu</a>
+  <a href="bridges.html">Danh sách cầu</a>
+  <a href="map.html">Bản đồ</a>
+  <a href="timeline.html">Dòng thời gian</a>
+  <a href="gallery.html">Thư viện ảnh</a>
+  <a href="compare.html">So sánh</a>
+  <a href="contact.html">Liên hệ</a>
+  <a href="quiz.html">Quiz</a>
+</nav>
+
+<!-- ===== GIỚI THIỆU TỔNG QUAN ===== -->
+<section class="section intro">
+  <h2>📌 Tổng quan</h2>
+  <div class="card">
+  <p>
+    Đồng bằng sông Cửu Long là khu vực có mạng lưới sông ngòi chằng chịt,
+    đóng vai trò quan trọng trong giao thông đường thủy và phát triển kinh tế.
+    Việc xây dựng các cây cầu lớn đã giúp kết nối các tỉnh, thúc đẩy giao thương,
+    rút ngắn thời gian di chuyển và nâng cao đời sống người dân.
+  </p>
+
+  <p>
+    Website này giới thiệu <strong>Các cây cầu tiêu biểu</strong> như:
+    <strong>Cầu Mỹ Thuận, Cầu Cần Thơ, Cầu Rạch Miễu, Cầu Cổ Chiên,
+    Cầu Hàm Luông, Cầu Mỹ Lợi, Cầu Năm Căn, Cầu Vàm Cống, Cầu Cao Lãnh,...</strong>.
+  </p>
+  </div> 
+</section>
+<!-- ===== CHỨC NĂNG CHÍNH ===== -->
+<section class="section features">
+  <h2>✨ Chức năng chính</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>🗺️ Bản đồ tương tác</h3>
+      <p>Hiển thị vị trí các cây cầu trên bản đồ, lọc theo tỉnh và theo sông.</p>
+    </div>
+
+    <div class="card">
+      <h3>📊 So sánh kỹ thuật</h3>
+      <p>So sánh chiều dài, năm xây dựng, chi phí đầu tư giữa các cây cầu.</p>
+    </div>
+
+    <div class="card">
+      <h3>🕒 Dòng thời gian</h3>
+      <p>Theo dõi quá trình phát triển giao thông đường thủy qua các giai đoạn.</p>
+    </div>
+<div class="card">
+      <h3>🖼️ Thư viện hình ảnh</h3>
+      <p>Ảnh trước – sau, slider ảnh.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section cta">
+  <h2>🚀 Khám phá ngay</h2>
+  <p>Nhấn vào nút bên dưới để xem danh sách chi tiết các cây cầu.</p>
+  <a href="bridges.html" class="btn">Xem danh sách cầu</a>
+</section>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+}
+
+window.onload = function () {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+};
+</script>
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+}
+
+window.onload = function () {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+};
+</script>
+    <script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+// LẤY TRẠNG THÁI CŨ
+let musicOn = localStorage.getItem("music") !== "off";
+
+// KHỞI ĐỘNG
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇 ";
+  }
+});
+
+// BẬT / TẮT
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+  <footer class="footer">
+  <p>© 2025 | Dự án Website nhóm 9 lớp 12D1 – Chủ đề 4 | Cây cầu nổi tiếng</p>
+</footer>
+
+</body>
+</html>

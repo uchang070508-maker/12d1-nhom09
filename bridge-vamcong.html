@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Cầu Vàm Cống</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="toggle-theme" onclick="toggleTheme()">🌙 / ☀️</div>
+<!-- ÂM THANH NỀN -->
+<audio id="bgMusic" loop>
+  <source src="river-bridge.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">
+  🎵 
+</div>
+
+<header>
+<h1>CẦU VÀM CỐNG</h1>
+</header>
+
+<div class="back-btn">
+  <a href="bridges.html">← Quay lại danh sách</a>
+</div>
+
+<section class="bridge-info card">
+<img src="vamcong1.jpg">
+<ul>
+<li><strong>Tên chính thức:</strong> Cầu Vàm Cống</li>
+<li><strong>Vị trí:</strong> Nối TP Cần Thơ và tỉnh Đồng Tháp, qua sông Hậu</li>
+<li><strong>Năm khởi công:</strong> 10/09/2013</li>
+<li><strong>Năm hoàn thành:</strong> 19/05/2019</li>
+<li><strong>Chiều dài:</strong> 2.970 m</li>
+<li><strong>Chiều rộng:</strong> 24,5 m</li>
+<li><strong>Tải trọng:</strong> HL93</li>
+<li><strong>Loại kiến trúc:</strong> Cầu dây văng</li>
+<li><strong>Tổng mức đầu tư:</strong> Hơn 271 triệu USD</li>
+<li><strong>Đơn vị thiết kế – thi công:</strong> Liên danh Việt Nam – Hàn Quốc</li>
+<li><strong>Ý nghĩa kinh tế – xã hội:</strong> Thúc đẩy phát triển trục giao thông Cần Thơ – An Giang – Campuchia.</li>
+<li><strong>So sánh:</strong> Có quy mô lớn tương đương cầu Cao Lãnh.</li>
+</ul>
+
+</section>
+  <section class="section card">
+  <h2>🎥 Video giới thiệu cầu</h2>
+
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/u14Zeg6s0fU"
+      title="Video giới thiệu cầu"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p class="video-note">
+    Nếu video không hiển thị, xem trực tiếp tại:
+    <a href="https://youtu.be/aeKa4niDrFs" target="_blank">
+      YouTube – Cầu Vàm Cống
+    </a>
+  </p>
+</section>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+}
+
+window.onload = function () {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+};
+</script>
+    <script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+// LẤY TRẠNG THÁI CŨ
+let musicOn = localStorage.getItem("music") !== "off";
+
+// KHỞI ĐỘNG
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇 ";
+  }
+});
+
+// BẬT / TẮT
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<footer>© 2025 | Dự án Website nhóm 9 lớp 12D1 – Chủ đề 4 | Cây cầu nổi tiếng</footer>
+</body>
+</html>

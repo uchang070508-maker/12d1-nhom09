@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery</title>
+<link rel="stylesheet" href="style.css?v=2">
+<style>
+/* ===== NÂNG CẤP GIAO DIỆN ===== */
+header h1{animation:fadeDown .8s ease}
+.gallery-item{cursor:pointer;transition:.4s;border-radius:14px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.15)}
+.gallery-item:hover{transform:translateY(-8px) scale(1.03)}
+.gallery-item img{transition:.6s}
+.gallery-item:hover img{transform:scale(1.08)}
+figcaption{background:linear-gradient(135deg,#a8a927,#485d18);color:#fff;padding:8px;font-weight:600}
+.gallery-section h2{text-align:center}
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:999}
+#lightbox img{max-width:90%;max-height:90%;border-radius:16px;animation:zoom .4s}
+@keyframes zoom{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1}}
+.compare-box{border-radius:18px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,.25)}
+.music-toggle,.toggle-theme{backdrop-filter:blur(8px)}
+.filter-bar{display:flex;justify-content:center;gap:12px;margin:25px 0}
+.filter-btn{padding:8px 18px;border-radius:20px;border:none;cursor:pointer;font-weight:600;background:#eee;transition:.3s}
+.filter-btn.active,.filter-btn:hover{background:linear-gradient(135deg,#a8a927,#485d18);color:#fff}
+.gallery-item.hide{opacity:0;transform:scale(.8);pointer-events:none;position:absolute}
+</style>
+</head>
+<body>
+<div class="toggle-theme" onclick="toggleTheme()">🌙 / ☀️</div>
+
+<audio id="bgMusic" loop>
+  <source src="river-bridge.mp3" type="audio/mpeg">
+</audio>
+<div class="music-toggle" onclick="toggleMusic()">🎵</div>
+
+<header><h1>🌉 Thư viện hình ảnh cầu</h1></header>
+<nav class="main-nav">
+  <a href="index.html">Trang chủ</a>
+  <a href="about.html">Giới thiệu</a>
+  <a href="bridges.html">Danh sách cầu</a>
+  <a href="map.html">Bản đồ</a>
+  <a href="timeline.html">Dòng thời gian</a>
+  <a href="gallery.html" class="active">Thư viện ảnh</a>
+  <a href="compare.html">So sánh</a>
+  <a href="contact.html">Liên hệ</a>
+  <a href="quiz.html">Quiz</a>
+</nav>
+
+<section class="gallery-section">
+  <h2>📸 Bộ sưu tập nổi bật</h2>
+  <p class="gallery-desc" style="text-align:center">Khám phá những cây cầu tiêu biểu với hiệu ứng hiện đại, mượt mà.</p>
+
+  <section class="card">
+    <h2 style="text-align:center">🎚️ So sánh trước – sau</h2>
+    <div class="compare-box">
+      <img src="images/before1.jpg" class="before">
+      <div class="after-wrap">
+        <img src="images/after1.jpg" class="after">
+      </div>
+      <input type="range" min="0" max="100" value="50" class="slider">
+    </div>
+  </section>
+
+  <div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">Tất cả</button>
+  <button class="filter-btn" data-filter="day-vang">Cầu dây văng</button>
+  <button class="filter-btn" data-filter="be-tong">Cầu bê tông</button>
+</div>
+
+<div class="gallery-grid">
+    <figure class="gallery-item" data-type="day-vang" onclick="openLightbox(this)"><img src="images/mythuan.jpg"><figcaption>Cầu Mỹ Thuận</figcaption></figure>
+    <figure class="gallery-item" data-type="day-vang" onclick="openLightbox(this)"><img src="images/rachmieu.jpg"><figcaption>Cầu Rạch Miễu</figcaption></figure>
+    <figure class="gallery-item" data-type="day-vang" onclick="openLightbox(this)"><img src="images/cantho.jpg"><figcaption>Cầu Cần Thơ</figcaption></figure>
+    <figure class="gallery-item" data-type="be-tong" onclick="openLightbox(this)"><img src="images/hamluong.jpg"><figcaption>Cầu Hàm Luông</figcaption></figure>
+    <figure class="gallery-item" data-type="be-tong" onclick="openLightbox(this)"><img src="images/cochien.jpg"><figcaption>Cầu Cổ Chiên</figcaption></figure>
+    <figure class="gallery-item" data-type="be-tong" onclick="openLightbox(this)"><img src="images/namcan.jpg"><figcaption>Cầu Năm Căn</figcaption></figure>
+    <figure class="gallery-item" data-type="be-tong" onclick="openLightbox(this)"><img src="images/myloi.jpg"><figcaption>Cầu Mỹ Lợi</figcaption></figure>
+    <figure class="gallery-item" data-type="day-vang" onclick="openLightbox(this)"><img src="images/vamcong.jpg"><figcaption>Cầu Vàm Cống</figcaption></figure>
+    <figure class="gallery-item" data-type="day-vang" onclick="openLightbox(this)"><img src="images/caolanh.jpg"><figcaption>Cầu Cao Lãnh</figcaption></figure>
+  </div>
+</section>
+
+<div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img"></div>
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<footer>© 2025 | Dự án Website nhóm 9 lớp 12D1 – Chủ đề 4 | Cây cầu nổi tiếng</footer>
+
+<script>
+const slider=document.querySelector('.slider');const afterWrap=document.querySelector('.after-wrap');slider.oninput=()=>afterWrap.style.width=slider.value+'%';
+function openLightbox(el){document.getElementById('lightbox-img').src=el.querySelector('img').src;document.getElementById('lightbox').style.display='flex'}
+function closeLightbox(){document.getElementById('lightbox').style.display='none'}
+function toggleTheme(){document.body.classList.toggle('dark');localStorage.setItem('theme',document.body.classList.contains('dark')?'dark':'light')}
+if(localStorage.getItem('theme')==='dark')document.body.classList.add('dark')
+const bgMusic=document.getElementById('bgMusic');let musicOn=localStorage.getItem('music')!=='off';if(musicOn){bgMusic.volume=.4;bgMusic.play().catch(()=>{})}
+function toggleMusic(){musicOn=!musicOn;musicOn?bgMusic.play():bgMusic.pause();localStorage.setItem('music',musicOn?'on':'off')}
+
+// ===== FILTER =====
+const filterBtns=document.querySelectorAll('.filter-btn');
+const items=document.querySelectorAll('.gallery-item');
+filterBtns.forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelector('.filter-btn.active').classList.remove('active');
+    btn.classList.add('active');
+    const type=btn.dataset.filter;
+    items.forEach(item=>{
+      item.classList.remove('hide');
+      if(type!=='all' && item.dataset.type!==type){
+        item.classList.add('hide');
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>

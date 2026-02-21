@@ -1,0 +1,1050 @@
+/* ================== RESET & CƠ BẢN ================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  line-height: 1.6;
+  background: #f7f9fc;
+  color: #333;
+  transition: background 0.3s, color 0.3s;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ================== DARK MODE ================== */
+body.dark {
+  background: #1f1f1f;
+  color: #eaeaea;
+}
+
+body.dark .card,
+body.dark .section,
+body.dark .main-nav {
+  background: #2b2b2b;
+}
+
+body.dark a {
+  color: #fff;
+}
+
+/* ================== TOGGLE THEME ================== */
+.toggle-theme {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: #fff;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(,0,0,0.15);
+  z-index: 999;
+}
+
+/* ================== HEADER ================== */
+.main-header {
+  text-align: center;
+  padding: 70px 20px;
+  background: radial-gradient(circle,rgba(168, 169, 39, 1) 0%, rgba(72, 93, 24, 1) 100%);
+  color: #fff;
+}
+
+.main-header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.main-header p {
+  font-size: 1.05rem;
+  opacity: 0.95;
+}
+
+/* ================== NAV ================== */
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  background: #ffffff;
+  padding: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.main-nav a {
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  background: linear-gradient(135deg,#a8a927,#485d18);
+  color: #;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 8px 25px rgba(168,169,39,0.5),
+    0 0 0 4px rgba(72,93,24,0.35);
+}
+
+/* ================== SECTION ================== */
+.section {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 40px 20px;
+}
+
+.section h2 {
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  color: #444;
+}
+
+body.dark .section h2 {
+  color: #fff;
+}
+
+.section p {
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+/* ================== GRID & CARD ================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.card p {
+  font-size: 0.95rem;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+/* ================== CTA ================== */
+.cta {
+  text-align: center;
+  background: #f7f9fc;
+  border-radius: 30px;
+  color: #fff;
+}
+
+.cta p {
+  margin: 15px 0 25px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: #fff;
+  color: #333;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* ================== TOP BUTTON ================== */
+#topBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 14px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg,#a8a927,#485d18);
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* ================== FOOTER ================== */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #ffffff;
+  margin-top: 40px;
+  font-size: 0.9rem;
+}
+
+body.dark .footer {
+  background: #2b2b2b;
+}
+
+/* ===== NÂNG CẤP THÀNH VIÊN ===== */
+.section .grid {
+  gap: 30px;
+}
+
+/* Card thành viên */
+.section .grid .card {
+  position: relative;
+  text-align: center;
+  padding-top: 60px;
+  background: linear-gradient(135deg, #fdfbfb, #f0f3ff);
+  overflow: hidden;
+}
+
+/* Hiệu ứng nền pastel khi hover */
+.section .grid .card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(168,169,39,0.25),
+    rgba(72,93,24,0.25));
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.section .grid .card:hover::before {
+  opacity: 1;
+}
+
+/* Tên thành viên */
+.section .grid .card h3 {
+  margin-top: 20px;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+body.dark .section .grid .card h3 {
+  color: #fff;
+}
+
+/* Vai trò */
+.section .grid .card p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+body.dark .section .grid .card p {
+  color: #ccc;
+}
+
+/* Hover nổi rõ */
+.section .grid .card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 18px 35px rgba(0,0,0,0.2);
+}
+/* ===== GRADIENT CHỮ TÊN THÀNH VIÊN ===== */
+.section .grid .card h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+
+  background: linear-gradient(
+    135deg,
+    #a8a927,
+    #6b7d1c,
+    #485d18
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Hover: chữ nổi & sáng hơn */
+.section .grid .card:hover h3 {
+  transform: scale(1.08);
+  filter: brightness(1.2);
+}
+
+/* ===== DARK MODE – GRADIENT RIÊNG ===== */
+body.dark .section .grid .card h3 {
+  background: linear-gradient(
+    135deg,
+    #a8a927,
+    #6b7d1c,
+    #485d18
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== VAI TRÒ (CHỮ DƯỚI) NỔI HƠN ===== */
+.section .grid .card p {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+body.dark .section .grid .card p {
+  color: #e2e8f0;
+}
+
+
+
+
+
+/* =====================
+   CARD
+===================== */
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 1100px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* =====================
+   GRID CẦU (bridges.html)
+===================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+}
+
+.bridge-thumb {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+  transition: transform 0.3s;
+}
+
+.bridge-thumb:hover {
+  transform: scale(1.05);
+}
+
+/* =====================
+   TRANG CHI TIẾT CẦU
+===================== */
+/* ===== ẢNH TRANG CHI TIẾT – GIỮ NGUYÊN BẢN ===== */
+.bridge-info img {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  margin: 30px auto;
+  display: block;
+  border-radius: 20px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  object-fit: contain; /* GIỮ NGUYÊN HÌNH */
+}
+
+.bridge-info ul {
+  list-style: none;
+}
+
+.bridge-info li {
+  margin-bottom: 8px;
+}
+
+/* ===== CARD CẦU – NỔI BẬT ===== */
+.grid .card {
+  background: var(--card);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  transition: transform 0.35s, box-shadow 0.35s;
+}
+
+/* Hiệu ứng hover */
+.grid .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(83, 166, 88,0.35);
+}
+
+/* ===== TÊN CẦU ===== */
+.grid .card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color:#a8a927;
+  text-align: center;
+}
+
+/* ===== NÚT "CHI TIẾT" ===== */
+.grid .card a {
+  display: inline-block;
+  margin: 10px auto;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  background: radial-gradient(circle,rgba(168, 169, 39, 1) 0%, rgba(72, 93, 24, 1) 100%);
+  color: #333;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 8px 25px rgba(168,169,39,0.5),
+    0 0 0 4px rgba(72,93,24,0.35);
+
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+/* Hover nút */
+.grid .card a:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(75, 162, 108,0.5);
+}
+
+/* Ảnh cầu */
+.bridge-thumb {
+  margin-top: 14px;
+  border-radius: 14px;
+}
+
+/* =====================
+   BẢNG SO SÁNH
+===================== */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.compare-table th,
+.compare-table td {
+  border: 1px solid var(--border);
+  padding: 10px;
+  text-align: center;
+}
+
+.compare-table th {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* =====================
+   GALLERY
+===================== */
+.gallery-section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.gallery-desc {
+  margin-bottom: 20px;
+  color: var(--secondary);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.gallery-item figcaption {
+  padding: 10px;
+  font-weight: 500;
+}
+
+/* =====================
+   SLIDER SO SÁNH ẢNH
+===================== */
+.compare-box {
+  position: relative;
+  max-width: 700px;
+  margin: auto;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.compare-box img {
+  width: 100%;
+  display: block;
+}
+
+.after-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  overflow: hidden;
+}
+
+.slider {
+  width: 100%;
+  margin-top: 15px;
+}
+
+/* =====================
+   LIGHTBOX
+===================== */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+#closeLightbox {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* =====================
+   NÚT LÊN ĐẦU TRANG
+===================== */
+#topBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* =====================
+   FOOTER
+===================== */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--secondary);
+}
+/* ===== HEADER KIỂU GRADIENT ===== */
+header {
+  background: radial-gradient(circle,rgba(168, 169, 39, 1) 0%, rgba(72, 93, 24, 1) 100%);
+  color: #fff;
+  padding: 70px 20px;
+  text-align: center;
+}
+
+/* Tiêu đề chính */
+header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+/* Dòng mô tả bên dưới */
+header p {
+  font-size: 16px;
+  opacity: 0.9;
+  max-width: 700px;
+  margin: auto;
+}
+
+
+/* ===== BẢNG KỸ THUẬT NỔI BẬT ===== */
+
+/* Header bảng */
+.compare-table th {
+  background: radial-gradient(circle,rgba(168, 169, 39, 1) 0%, rgba(72, 93, 24, 1) 100%);
+  color: #fff;
+  padding: 14px 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Ô dữ liệu */
+.compare-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+
+/* Cột tiêu chí (cột đầu) */
+.compare-table td:first-child {
+  font-weight: 600;
+  background: rgba(93, 168, 61,0.08);
+}
+
+/* Hiệu ứng hover từng dòng */
+.compare-table tr:hover td {
+  background: rgba(75, 162, 88,0.08);
+  transition: 0.3s;
+}
+
+/* Dòng cuối không viền */
+.compare-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Responsive: cuộn ngang trên mobile */
+.card {
+  overflow-x: auto;
+}
+/* ===== LÀM NỔI BẬT 2 PHẦN NGHIÊN CỨU ===== */
+
+/* Dark mode */
+body.dark .section:nth-of-type(1),
+body.dark .section:nth-of-type(3) {
+  background: linear-gradient(135deg,#a8a927,#485d18)
+  border-left-color: ##78f092;
+}
+
+
+
+/* Đoạn văn nhấn mạnh */
+.section:nth-of-type(1) p,
+.section:nth-of-type(3) p {
+  font-size: 1.08rem;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+body.dark .section:nth-of-type(1) p,
+body.dark .section:nth-of-type(3) p {
+  color: #f1f1f1;
+}
+
+/* Danh sách địa bàn nhìn rõ & gọn */
+.section:nth-of-type(3) ul {
+  margin-top: 15px;
+  padding-left: 0;
+}
+
+.section:nth-of-type(3) ul li {
+  list-style: none;
+  margin-bottom: 10px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.section:nth-of-type(3) ul li:hover {
+  transform: translateX(6px);
+}
+
+body.dark .section:nth-of-type(3) ul li {
+  background: #2b2b3d;
+}
+
+/* ===== DARK MODE FIX – PHẦN THÀNH VIÊN ===== */
+
+/* Nền card sáng hơn 1 chút để tách chữ */
+body.dark .section .grid .card {
+  background: linear-gradient(135deg, #374036, #4b5749);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* Tên thành viên – gradient sáng, tương phản tốt */
+body.dark .section .grid .card h3 {
+  background: linear-gradient(
+    135deg,
+    #c2e9fb,
+    #e0d1f7,
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  filter: brightness(1.15);
+}
+
+/* Vai trò – tăng độ sáng chữ */
+body.dark .section .grid .card p {
+  color: #f1f5f9;
+  font-weight: 500;
+}
+
+/* Avatar icon sáng hơn */
+body.dark .section .grid .card::after {
+  background: linear-gradient(135deg, #818cf8, #f472b6);
+  color: #fff;
+}
+
+/* Hover – không làm chữ tối đi */
+body.dark .section .grid .card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+
+/* ===== QUAY LẠI DANH SÁCH – SIÊU NỔI ===== */
+.back-btn {
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.back-btn a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 14px 32px;
+  border-radius: 999px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  background: linear-gradient(135deg,#a8a927,#485d18);
+  color: #333;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 8px 25px rgba(168,169,39,0.5),
+    0 0 0 4px rgba(72,93,24,0.35);
+
+  transition: all 0.25s ease;
+}
+
+.back-btn a:hover {
+  transform: translateX(-8px) scale(1.05);
+  box-shadow:
+    0 8px 25px rgba(168,169,39,0.5),
+    0 0 0 4px rgba(72,93,24,0.35);
+}
+
+
+
+
+body.dark .highlight {
+  background: #1e1e1e;
+  border-color: #81c784;
+}
+
+.timeline-mini {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.step {
+  flex: 1;
+  min-width: 180px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+body.dark .step {
+  background: #2a2a2a;
+}
+/*QUIZ */
+.quiz-box button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #2196f3;
+  color: white;
+}
+
+.quiz-box button:hover {
+  background: #1976d2;
+}
+
+.doc-list li {
+  margin: 10px 0;
+}
+
+.doc-list a {
+  color: #1565c0;
+  font-weight: bold;
+}
+
+body.dark .doc-list a {
+  color: #90caf9;
+}
+.quiz-box {
+  max-width: 700px;
+  margin: auto;
+}
+
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.answers {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.answer-btn {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #eef2ff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.answer-btn:hover {
+  background: #dbeafe;
+}
+
+.correct {
+  background: #b2edc7 !important;
+}
+
+.wrong {
+  background: #fecaca !important;
+}
+
+#nextBtn {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background: linear-gradient(135deg,#a8a927,#485d18);
+  color: white;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.quiz-box{
+  max-width:900px;          /* 👈 RỘNG HƠN */
+  width:92%;                /* 👈 FULL GẦN MÀN HÌNH */
+  margin:30px auto;
+  padding:30px 40px;        /* 👈 THOÁNG HƠN */
+  border-radius:24px;
+  background:#fff;
+  box-shadow:0 25px 60px rgba(0,0,0,.18);
+}
+
+/* ===== NÚT QUAY LẠI ĐẦU TRANG ===== */
+#topBtn{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  padding:12px 16px;
+  border-radius:50%;
+  background: linear-gradient(135deg,#a8a927,#485d18);
+  color: #333;
+  
+  color:white;
+  font-size:18px;
+  border:none;
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);
+}
+
+#topBtn:hover{
+  background: linear-gradient(135deg,#a8a927,#485d18);
+  color: #333;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 8px 25px rgba(168,169,39,0.5),
+    0 0 0 4px rgba(72,93,24,0.35);
+}
+
+.music-toggle {
+  position:fixed;
+  top:12px;
+  left:1120px;
+  padding:8px 12px;
+  border-radius:50%;
+  background:#ffffff;
+  color:white;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  transition: all 0.3s ease;
+}
+
+.music-toggle.off {
+  background: #ffffff;
+  color: #111;
+}
+
+/* DARK MODE */
+body.dark .music-toggle {
+  box-shadow: 0 6px 18px rgba(255,255,255,0.15);
+}
+
+@media (max-width:768px){
+  .quiz-box{
+    padding:20px;
+    max-width:95%;
+  }
+}
+@media (max-width: 768px) {
+
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 12px;
+  }
+
+  .menu {
+    flex-direction: column;
+  }
+
+  .box {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+}
+/* VIDEO EMBED */
+.video-section {
+  width: 100%;
+  max-width: 1100px;
+  margin: 40px auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.video-section iframe {
+  width: 100%;
+  height: 520px;
+  border: none;
+}
+.lightbox-controls{
+  position:fixed;
+  top:20px;
+  right:20px;
+  display:flex;
+  gap:12px;
+  z-index:1000;
+}
+
+.lightbox-controls button{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:50%;
+  font-size:18px;
+  cursor:pointer;
+  background:rgba(255,255,255,.15);
+  color:#fff;
+  backdrop-filter:blur(8px);
+  transition:.3s;
+}
+
+.lightbox-controls button:hover{
+  background:linear-gradient(135deg,#a8a927,#485d18);
+  transform:scale(1.1);
+}
+
+/* ===== VIDEO RESPONSIVE ===== */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.22);
+  margin-top: 18px;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 12px;
+}
+
+.video-note {
+  margin-top: 14px;
+  font-size: 15px;
+  text-align: center;
+  color: #444;
+}
+
+.video-note a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.video-note a:hover {
+  text-decoration: underline;
+}
+
+/* DARK MODE */
+body.dark .video-note {
+  color: #ddd;
+}
+
+body.dark .video-note a {
+  color: #93c5fd;
+}

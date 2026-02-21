@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Danh sách cầu</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- ÂM THANH NỀN -->
+<audio id="bgMusic" loop>
+  <source src="river-bridge.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">
+  🎵 
+</div>
+
+<div class="toggle-theme" onclick="toggleTheme()">🌙 / ☀️</div>
+
+<header>
+  <h1>DANH SÁCH CÁC CÂY CẦU NỔI TIẾNG</h1>
+</header>
+
+ <nav class="main-nav">
+  <a href="index.html" >Trang chủ</a>
+  <a href="about.html">Giới thiệu</a>
+  <a href="bridges.html"class="active">Danh sách cầu</a>
+  <a href="map.html">Bản đồ</a>
+  <a href="timeline.html">Dòng thời gian</a>
+  <a href="gallery.html">Thư viện ảnh</a>
+  <a href="compare.html">So sánh</a>
+  <a href="contact.html">Liên hệ</a>
+  <a href="quiz.html">Quiz</a>
+</nav>
+  
+<section class="grid">
+
+  <div class="card">
+    <h3>Cầu Mỹ Thuận</h3>
+    <a href="bridge-mythuan.html">Chi tiết</a>
+    <img src="mythuan1.jpg" alt="Cầu Mỹ Thuận" class="bridge-thumb">
+</div>
+  </div>
+  
+  <div class="card">
+    <h3>Cầu Rạch Miễu</h3>
+    <a href="bridge-rachmieu.html">Chi tiết</a>
+    <img src="rachmieu1.jpg" alt="Cầu Mỹ Thuận" class="bridge-thumb">
+</div>
+  </div>
+
+  <div class="card">
+    <h3>Cầu Hàm Luông</h3>
+    <a href="bridge-hamluong.html">Chi tiết</a>
+    <img src="hamluong1.jpg" alt="Cầu Mỹ Thuận" class="bridge-thumb">
+</div>
+  </div>
+
+<div class="card">
+    <h3>Cầu Cổ Chiên</h3>
+    <a href="bridge-cochien.html">Chi tiết</a>
+   <img src="cochien1.jpg" alt="Cầu Mỹ Thuận" class="bridge-thumb">
+</div>
+ </div>
+ 
+</div>
+  <div class="card">
+    <h3>Cầu Cần Thơ</h3>
+    <a href="bridge-cantho.html">Chi tiết</a>
+    <img src="cantho1.jpg" alt="Cầu Mỹ Thuận" class="bridge-thumb">
+</div>
+  </div>
+
+  <div class="card">
+    <h3>Cầu Năm Căn</h3>
+    <a href="bridge-namcan.html">Chi tiết</a>
+    <img src="namcan1.jpg" alt="Cầu Mỹ Thuận" class="bridge-thumb">
+</div>
+  </div>
+
+  <div class="card">
+    <h3>Cầu Mỹ Lợi</h3>
+    <a href="bridge-myloi.html">Chi tiết</a>
+    <img src="myloi1.jpg" alt="Cầu Mỹ Thuận" class="bridge-thumb">
+</div>
+  </div>
+
+  <div class="card">
+    <h3>Cầu Vàm Cống</h3>
+    <a href="bridge-vamcong.html">Chi tiết</a>
+    <img src="vamcong1.jpg" alt="Cầu Mỹ Thuận" class="bridge-thumb">
+</div>
+  </div>
+
+  <div class="card">
+    <h3>Cầu Cao Lãnh</h3>
+    <a href="bridge-caolanh.html">Chi tiết</a>
+    <img src="caolanh1.jpg" alt="Cầu Mỹ Thuận" class="bridge-thumb">
+</div>
+  </div>
+
+</section>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+}
+
+window.onload = function () {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+};
+</script>
+  <script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+// LẤY TRẠNG THÁI CŨ
+let musicOn = localStorage.getItem("music") !== "off";
+
+// KHỞI ĐỘNG
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇 ";
+  }
+});
+
+// BẬT / TẮT
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<footer>© 2025 | Dự án Website nhóm 9 lớp 12D1 – Chủ đề 4 | Cây cầu nổi tiếng</footer>
+
+</body>
+</html>

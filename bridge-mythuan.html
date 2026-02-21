@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Cầu Mỹ Thuận</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="toggle-theme" onclick="toggleTheme()">🌙 / ☀️</div>
+<!-- ÂM THANH NỀN -->
+<audio id="bgMusic" loop>
+  <source src="river-bridge.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">
+  🎵 
+</div>
+
+<header>
+<h1>CẦU MỸ THUẬN</h1>
+<p>Cầu dây văng đầu tiên của miền Tây Nam Bộ</p>
+</header>
+
+<div class="back-btn">
+  <a href="bridges.html">← Quay lại danh sách</a>
+</div>
+<section class="bridge-info card">
+<img src="mythuan1.jpg" alt="Cầu Mỹ Thuận">
+<ul>
+  <li><strong>Tên chính thức:</strong> Cầu Mỹ Thuận</li>
+  <li><strong>Tên gọi dân gian:</strong> Cầu Mỹ Thuận</li>
+
+  <li><strong>Vị trí:</strong> Nối tỉnh Tiền Giang và Vĩnh Long, bắc qua sông Tiền</li>
+
+  <li><strong> khởi công:</strong> 06/071997</li>
+  <li><strong> hoàn thành:</strong> 21/05/2000</li>
+
+  <li><strong>Chiều dài:</strong> 1.535 m</li>
+  <li><strong>Chiều rộng:</strong> 23,6 m</li>
+  <li><strong>Tải trọng:</strong> H30 – XB80</li>
+
+  <li><strong>Loại kiến trúc:</strong> Cầu dây văng</li>
+
+  <li><strong>Tổng mức đầu tư:</strong> Khoảng 91 triệu USD</li>
+
+  <li><strong>Đơn vị thiết kế – thi công:</strong> Liên danh Úc – Việt Nam</li>
+
+  <li><strong>Ý nghĩa kinh tế – xã hội:</strong>
+    Là cây cầu dây văng đầu tiên tại Đồng bằng sông Cửu Long,
+    mở ra bước ngoặt lớn cho giao thông và phát triển kinh tế miền Tây.
+  </li>
+
+  <li><strong>Sự kiện khánh thành:</strong>
+    Khánh thành năm 2000, đánh dấu lần đầu tiên miền Tây có cầu dây văng hiện đại.
+  </li>
+
+  <li><strong>So sánh:</strong>
+    So với cầu Rạch Miễu, cầu Mỹ Thuận có vai trò lịch sử lớn hơn
+    vì là cây cầu dây văng đầu tiên trong khu vực.
+  </li>
+</ul>
+</div>
+  
+</section>
+<section class="section card">
+  <h2>🎥 Video giới thiệu cầu</h2>
+
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/vzZY6QKvOng"
+      title="Video giới thiệu cầu"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p class="video-note">
+    Nếu video không hiển thị, xem trực tiếp tại:
+    <a href="https://youtu.be/vzZY6QKvOng?si=0RVtJIF1ocYZ5NHx" target="_blank">
+      YouTube – Cầu Mỹ Thuận
+    </a>
+  </p>
+</section>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+}
+
+window.onload = function () {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+};
+</script>
+  <script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+// LẤY TRẠNG THÁI CŨ
+let musicOn = localStorage.getItem("music") !== "off";
+
+// KHỞI ĐỘNG
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇 ";
+  }
+});
+
+// BẬT / TẮT
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<footer>© 2025| Dự án Website nhóm 9 lớp 12D1 – Chủ đề 4 | Cây cầu nổi tiếng</footer>
+</body>
+</html>

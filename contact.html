@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Liên hệ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- ÂM THANH NỀN -->
+<audio id="bgMusic" loop>
+  <source src="river-bridge.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">
+  🎵 
+</div>
+
+<!-- NÚT CHUYỂN GIAO DIỆN -->
+<div class="toggle-theme" onclick="toggleTheme()">🌙 / ☀️</div>
+
+<!-- ===== HEADER ===== -->
+<header class="main-header">
+  <h1>📩 LIÊN HỆ & PHẢN HỒI</h1>
+  <p>Thông tin nhóm – Gửi phản hồi – Đánh giá website</p>
+</header>
+
+<!-- ===== NAV ===== -->
+<nav class="main-nav">
+  <a href="index.html">Trang chủ</a>
+  <a href="about.html">Giới thiệu</a>
+  <a href="bridges.html">Danh sách cầu</a>
+  <a href="map.html">Bản đồ</a>
+  <a href="timeline.html">Dòng thời gian</a>
+  <a href="gallery.html">Thư viện ảnh</a>
+  <a href="compare.html">So sánh</a>
+  <a href="contact.html" class="active">Liên hệ</a>
+</nav>
+
+<!-- ===== THÔNG TIN NHÓM ===== -->
+<section class="section">
+  <h2>👥 Thông tin nhóm</h2>
+
+   <div class="grid">
+    <div class="card">
+      <h3>Trần Hữu Vinh</h3>
+      <p>Phụ trách: Nội dung & tổng hợp thông tin</p>
+    </div>
+
+    <div class="card">
+      <h3>Lý Gia Hân</h3>
+      <p>Phụ trách: Thiết kế giao diện HTML / CSS</p>
+    </div>
+    
+<div class="card">
+      <h3>Võ Thị Như Ý</h3>
+      <p>Phụ trách: Bản đồ & Nội dung </p>
+    </div>
+    
+    <div class="card">
+      <h3>Nguyễn Thị Uyên Trang</h3>
+      <p>Phụ trách:  biểu đồ & JavaScript</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THÔNG TIN LIÊN HỆ ===== -->
+<section class="section">
+  <h2>📞 Thông tin liên hệ</h2>
+
+  <div class="grid">
+    <div class="card">
+      <p>📧 Email: <strong>nhom4*******.com</strong></p>
+      <p>📱 SĐT: <strong>0387 792 584</strong></p>
+      <p>🏫 Trường: <strong>THPT Phan Liêm</strong></p>
+    </div>
+
+    <div class="card">
+      <p>📍 Địa chỉ nghiên cứu:</p>
+      <p>Đồng bằng sông Cửu Long – Việt Nam</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ĐÁNH GIÁ ===== -->
+<section class="section">
+  <h2>⭐ Đánh giá website</h2>
+
+  <div class="card" style="text-align:center">
+    <p>Website này hữu ích với bạn không?</p>
+
+    <div id="rating">
+      <span onclick="rate(1)">⭐</span>
+      <span onclick="rate(2)">⭐</span>
+      <span onclick="rate(3)">⭐</span>
+      <span onclick="rate(4)">⭐</span>
+      <span onclick="rate(5)">⭐</span>
+    </div>
+
+    <p id="ratingResult" style="margin-top:10px; font-weight:bold;"></p>
+  </div>
+</section>
+
+<!-- ===== BÌNH LUẬN ===== -->
+<section class="section">
+  <h2>💬 Bình luận</h2>
+
+  <div class="card">
+    <input id="name" placeholder="Tên của bạn" style="width:100%;padding:10px;margin-bottom:10px">
+    <textarea id="comment" placeholder="Nội dung bình luận" style="width:100%;padding:10px;height:80px"></textarea>
+    <button style="margin-top:10px" onclick="addComment()">Gửi bình luận</button>
+  </div>
+
+  <div id="commentList" class="grid" style="margin-top:20px"></div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>© 2025 | Dự án Website nhóm 9 lớp 12D1 – Chủ đề 4 | Cây cầu nổi tiếng</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- ===== SCRIPT ===== -->
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem("theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+}
+
+window.onload = function () {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+};
+
+/* ===== ĐÁNH GIÁ ===== */
+function rate(stars) {
+  document.getElementById("ratingResult").innerText =
+    "Bạn đã đánh giá " + stars + " sao ⭐";
+}
+
+/* ===== BÌNH LUẬN ===== */
+function addComment() {
+  const name = document.getElementById("name").value;
+  const text = document.getElementById("comment").value;
+
+  if (!name || !text) return alert("Vui lòng nhập đầy đủ!");
+
+  const div = document.createElement("div");
+  div.className = "card";
+  div.innerHTML = "<h3>" + name + "</h3><p>" + text + "</p>";
+
+  document.getElementById("commentList").prepend(div);
+
+  document.getElementById("name").value = "";
+  document.getElementById("comment").value = "";
+}
+</script>
+  <script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+// LẤY TRẠNG THÁI CŨ
+let musicOn = localStorage.getItem("music") !== "off";
+
+// KHỞI ĐỘNG
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇 ";
+  }
+});
+
+// BẬT / TẮT
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz & Kiến thức về Cầu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+
+/* ===== SECTION / CARD ===== */
+.section{max-width:1100px;margin:20px auto;padding:20px}
+.highlight{background:#fff;border-radius:20px;box-shadow:0 15px 40px rgba(0,0,0,.12)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{padding:16px;border-radius:16px;background:#f9faf6;box-shadow:0 10px 25px rgba(0,0,0,.1);transition:.4s}
+.card:hover{transform:translateY(-6px)}
+
+
+/* ===== INFOGRAPHIC ===== */
+.timeline-mini{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.step{padding:10px 14px;border-radius:20px;background:linear-gradient(135deg,#a8a927,#485d18);color:#fff;font-weight:600}
+  /* ===== QUIZ ===== */
+.quiz-box{border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.18);background:#fff}
+.quiz-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.progress-bar{height:10px;border-radius:20px;background:#eee;overflow:hidden;margin:10px 0}
+.progress-bar span{display:block;height:100%;width:0;background:linear-gradient(135deg,#a8a927,#485d18);transition:.4s}
+#question{margin:10px 0}
+.answers{display:grid;gap:10px}
+.answer-btn{padding:12px;border-radius:14px;border:none;cursor:pointer;font-weight:600;background:#f1f2ee;transition:.3s}
+.answer-btn:hover{transform:scale(1.03)}
+.answer-btn.correct{background:#4caf50;color:#fff}
+.answer-btn.wrong{background:#f44336;color:#fff}
+#nextBtn{margin-top:12px;padding:10px 16px;border-radius:20px;border:none;cursor:pointer;background:linear-gradient(135deg,#a8a927,#485d18);color:#fff;font-weight:700}
+#nextBtn:disabled{opacity:.5}
+.hidden{display:none}
+
+
+/* ===== TIMER ===== */
+.timer{font-weight:700}
+
+
+/* ===== RESULT ===== */
+#resultBox{text-align:center}
+#resultBox h2{margin-bottom:10px}
+  /* ===== DARK MODE ===== */
+body.dark{background:#111;color:#eee}
+body.dark .highlight,body.dark .quiz-box{background:#1b1b1b}
+body.dark .answer-btn{background:#333;color:#eee}
+</style>
+</head>
+<body>
+<!-- ÂM THANH NỀN -->
+<audio id="bgMusic" loop>
+  <source src="river-bridge.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">
+  🎵 
+</div>
+
+<!-- TOGGLE THEME -->
+<div class="toggle-theme" onclick="toggleTheme()">🌙 / ☀️</div>
+
+<header class="main-header">
+  <h1 class="gradient-text">🧠 KIẾN THỨC & QUIZ VỀ CẦU</h1>
+  <p>Tìm hiểu – Ghi nhớ – Kiểm tra kiến thức</p>
+</header>
+
+<nav class="main-nav">
+  <a href="index.html">Trang chủ</a>
+  <a href="about.html">Giới thiệu</a>
+  <a href="bridges.html">Danh sách cầu</a>
+  <a href="map.html">Bản đồ</a>
+  <a href="timeline.html">Dòng thời gian</a>
+  <a href="gallery.html">Thư viện ảnh</a>
+  <a href="quiz.html" class="active">Quiz</a>
+  <a href="contact.html">Liên hệ</a>
+</nav>
+
+<!-- ===== THUẬT NGỮ ===== -->
+<section class="section highlight">
+  <h2>📘 Thuật ngữ kỹ thuật cầu</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Mố cầu</h3>
+      <p>Phần kết cấu nằm ở hai đầu cầu, dùng để đỡ mặt cầu.</p>
+    </div>
+
+    <div class="card">
+      <h3>Trụ cầu</h3>
+      <p>Cột trụ nằm giữa sông, có nhiệm vụ nâng đỡ toàn bộ cầu.</p>
+    </div>
+
+    <div class="card">
+      <h3>Dầm cầu</h3>
+      <p>Bộ phận chịu lực chính, truyền tải trọng xuống trụ cầu.</p>
+    </div>
+
+    <div class="card">
+      <h3>Mặt cầu</h3>
+      <p>Phần đường cho xe và người lưu thông.</p>
+    </div>
+  </div>
+</section>
+  
+  <!-- ===== INFOGRAPHIC ===== -->
+<section class="section">
+  <h2>🏗️ Infographic quy trình xây dựng cầu</h2>
+
+  <div class="timeline-mini">
+    <div class="step">📐 Khảo sát địa chất</div>
+    <div class="step">📝 Thiết kế kỹ thuật</div>
+    <div class="step">🏗️ Thi công móng & trụ</div>
+    <div class="step">🔩 Lắp dầm & mặt cầu</div>
+    <div class="step">✅ Kiểm định & đưa vào sử dụng</div>
+  </div>
+</section>
+
+  <!-- ===== QUIZ ===== -->
+
+<section class="section">
+  <h2>🎮 QUIZ Game kiến thức về cầu</h2>
+<section class="quiz-box" id="quizBox">
+<div class="quiz-header">
+<span id="progress">Câu 1 / 5</span>
+<span id="score">Điểm: 0</span>
+<span class="lives" id="lives">❤️❤️❤️</span>
+<span class="timer">⏱️ <span id="time">15</span>s</span>
+</div>
+
+
+<div class="progress-bar"><span id="bar"></span></div>
+<div class="xp-bar"><span id="xp"></span></div>
+
+
+<h2 id="question"></h2>
+<div id="answers" class="answers"></div>
+<button id="nextBtn" onclick="nextQuestion()" disabled>Câu tiếp theo</button>
+</section>
+
+
+<section class="quiz-box hidden" id="resultBox" style="text-align:center">
+<h2>🎉 KẾT QUẢ</h2>
+<p id="finalScore"></p>
+<p id="rating"></p>
+<button id="nextBtn" onclick="restartQuiz()">Chơi lại</button>
+</section>
+<footer class="footer">
+  <p>© 2025 | Dự án Website nhóm 9 lớp 12D1 – Chủ đề 4 | Cây cầu nổi tiếng</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  function toggleTheme() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem("theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+}
+
+window.onload = function () {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+};
+const questions = [
+  {
+    q: "Cầu Mỹ Thuận bắc qua con sông nào?",
+    a: ["Sông Tiền", "Sông Hậu", "Sông Vàm Cỏ", "Sông Cổ Chiên"],
+    correct: 0
+  },
+  {
+    q: "Cầu Cần Thơ là loại cầu gì?",
+    a: ["Cầu treo", "Cầu dây văng", "Cầu bê tông đơn giản", "Cầu gỗ"],
+    correct: 1
+  },
+  {
+    q: "Cầu Rạch Miễu nối hai tỉnh nào?",
+    a: ["Tiền Giang – Bến Tre", "Vĩnh Long – Cần Thơ", "Cà Mau – Bạc Liêu", "Đồng Tháp – An Giang"],
+    correct: 0
+  },
+  {
+    q: "Cầu Năm Căn nằm ở tỉnh nào?",
+    a: ["Cần Thơ", "Bến Tre", "Cà Mau", "Long An"],
+    correct: 2
+  },
+  {
+    q: "Mục đích chính của các cầu lớn ở ĐBSCL là gì?",
+    a: ["Trang trí", "Du lịch", "Kết nối giao thông – phát triển kinh tế", "Quân sự"],
+    correct: 2
+  }
+];
+let current=0,score=0,selected=null,time=15,timer,lives=3,xp=0;
+
+
+const qEl=document.getElementById('question');
+const aEl=document.getElementById('answers');
+const pEl=document.getElementById('progress');
+const sEl=document.getElementById('score');
+const nBtn=document.getElementById('nextBtn');
+const bar=document.getElementById('bar');
+const xpEl=document.getElementById('xp');
+const timeEl=document.getElementById('time');
+const livesEl=document.getElementById('lives');
+
+function loadQuestion(){
+clearInterval(timer);
+time=15; timeEl.textContent=time;
+livesEl.textContent='❤️'.repeat(lives);
+xpEl.style.width=xp+'%';
+
+
+timer=setInterval(()=>{
+time--; timeEl.textContent=time;
+if(time===0){clearInterval(timer);nBtn.disabled=false}
+},1000);
+
+
+selected=null; nBtn.disabled=true; aEl.innerHTML='';
+const q=questions[current];
+qEl.textContent=q.q;
+pEl.textContent=`Câu ${current+1} / ${questions.length}`;
+sEl.textContent=`Điểm: ${score}`;
+bar.style.width=(current/questions.length*100)+'%';
+  q.a.forEach((t,i)=>{
+const b=document.createElement('button');
+b.textContent=t;
+b.className='answer-btn';
+b.onclick=()=>selectAnswer(i,b);
+aEl.appendChild(b);
+});
+}
+
+
+
+function showResult() {
+  document.querySelector(".quiz-box").classList.add("hidden");
+  document.getElementById("resultBox").classList.remove("hidden");
+
+  document.getElementById("finalScore").textContent =
+    `Bạn trả lời đúng ${score} / ${questions.length} câu`;
+
+  let rating = "📘 Cần ôn lại thêm!";
+  if (score >= 4) rating = "🏆 Rất giỏi!";
+  else if (score >= 3) rating = "👍 Khá tốt!";
+
+  document.getElementById("rating").textContent = rating;
+}
+
+function selectAnswer(i,btn){
+if(selected!==null) return;
+selected=i; clearInterval(timer);
+document.querySelectorAll('.answer-btn').forEach(b=>b.disabled=true);
+
+
+if(i===questions[current].correct){
+btn.classList.add('correct'); score++; xp+=20; xpEl.style.width=xp+'%';
+}else{
+btn.classList.add('wrong'); lives--; livesEl.textContent='❤️'.repeat(lives);
+document.getElementById('quizBox').classList.add('game-shake');
+setTimeout(()=>document.getElementById('quizBox').classList.remove('game-shake'),300);
+aEl.children[questions[current].correct].classList.add('correct');
+}
+
+
+if(lives<=0){showResult(); return}
+nBtn.disabled=false;
+}
+function nextQuestion(){
+current++;
+if(current<questions.length) loadQuestion();
+else showResult();
+}
+
+
+function showResult(){
+document.getElementById('quizBox').classList.add('hidden');
+document.getElementById('resultBox').classList.remove('hidden');
+document.getElementById('finalScore').textContent=`Bạn đúng ${score}/${questions.length} câu`;
+document.getElementById('rating').textContent=score>=4?'🏆 Xuất sắc!':score>=3?'👍 Khá tốt':'📘 Cần ôn lại';
+}
+
+
+function restartQuiz(){
+current=0; score=0; lives=3; xp=0;
+document.getElementById('resultBox').classList.add('hidden');
+document.getElementById('quizBox').classList.remove('hidden');
+loadQuestion();
+}
+
+
+loadQuestion();
+</script>
+  <script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+// LẤY TRẠNG THÁI CŨ
+let musicOn = localStorage.getItem("music") !== "off";
+
+// KHỞI ĐỘNG
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇 ";
+  }
+});
+
+// BẬT / TẮT
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+</body>
+</html>

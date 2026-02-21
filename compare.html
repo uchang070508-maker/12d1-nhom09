@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>So sánh các cây cầu</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="toggle-theme" onclick="toggleTheme()">🌙 / ☀️</div>
+<!-- ÂM THANH NỀN -->
+<audio id="bgMusic" loop>
+  <source src="river-bridge.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-toggle" onclick="toggleMusic()">
+  🎵 
+</div>
+
+  <header class="main-header">
+  <h1>📊 So sánh kỹ thuật các cây cầu</h1>
+  <p>So sánh trực quan giữa các cây cầu tiêu biểu</p>
+</header>
+  <nav class="main-nav">
+  <a href="index.html" >Trang chủ</a>
+  <a href="about.html">Giới thiệu</a>
+  <a href="bridges.html">Danh sách cầu</a>
+  <a href="map.html">Bản đồ</a>
+  <a href="timeline.html">Dòng thời gian</a>
+  <a href="gallery.html">Thư viện ảnh</a>
+  <a href="compare.html"class="active">So sánh</a>
+  <a href="contact.html">Liên hệ</a>
+  <a href="quiz.html">Quiz</a>
+</nav>
+<section class="card">
+  <h2>🔘 Chọn các cầu để so sánh</h2>
+  <div id="bridgeSelector"></div>
+</section>
+
+<!-- ===== BẢNG SO SÁNH ===== -->
+<section class="card">
+  <h2>📋 Bảng so sánh kỹ thuật</h2>
+  <table class="compare-table" id="compareTable"></table>
+</section>
+
+<section class="card">
+  <h2>📊 Biểu đồ so sánh</h2>
+  <canvas id="lengthChart" height="120"></canvas>
+  <br>
+  <canvas id="yearChart" height="120"></canvas>
+</section>
+
+<section class="card">
+  <h2>🤖 Phân tích thông minh</h2>
+  <p id="longestBridge"></p>
+  <p id="newestBridge"></p>
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+const allBridges = [
+  {
+    id: "mythuan",
+    name: "Cầu Mỹ Thuận",
+    length: 1535,
+    cost: 2000,
+    year: 2000,
+    type: "Cầu dây văng"
+  },
+  {
+    id: "cantho",
+    name: "Cầu Cần Thơ",
+    length: 15850,
+    cost: 4800,
+    year: 2010,
+    type: "Cầu dây văng"
+  },
+  {
+    id: "vamcong",
+    name: "Cầu Vàm Cống",
+    length: 2970,
+    cost: 5700,
+    year: 2019,
+    type: "Cầu dây văng"
+  },
+  {
+    id: "rachmieu",
+    name: "Cầu Rạch Miễu",
+    length: 8331,
+    cost: 3300,
+    year: 2009,
+    type: "Cầu dây văng"
+  },
+  {
+    id: "hamluong",
+    name: "Cầu Hàm Luông",
+    length: 8226,
+    cost: 3100,
+    year: 2010,
+    type: "Cầu Bê tông cốt thép"
+  },
+  {
+    id: "myloi",
+    name: "Cầu Mỹ Lợi",
+    length: 2691,
+    cost: 1438,
+    year: 2015,
+    type: "Cầu bê tông cốt thép"
+  },
+  {
+    id: "namcan",
+    name: "Cầu Năm Căn",
+    length: 3390,
+    cost: 650,
+    year: 2015,
+    type: "Cầu bê tông cốt thép"
+  },
+  {
+    id: "caolanh",
+    name: "Cầu Cao Lãnh",
+    length: 2015,
+    cost: 7500,
+    year: 2018,
+    type: "Cầu dây văng"
+  },
+  {
+    id: "cochien",
+    name: "Cầu Cổ Chiên",
+    length: 1590,
+    cost: 2308,
+    year: 2015,
+    type: "Cầu dầm hộp bê tông"
+  }
+];
+
+let lengthChart, yearChart;
+
+/* ===== TẠO CHECKBOX ===== */
+const selector = document.getElementById("bridgeSelector");
+allBridges.forEach(b => {
+  selector.innerHTML += `
+    <label style="margin-right:12px">
+      <input type="checkbox" value="${b.id}" checked>
+      ${b.name}
+    </label>
+  `;
+});
+
+/* ===== LẤY CẦU ĐƯỢC CHỌN ===== */
+function getSelectedBridges() {
+  const checked = [...selector.querySelectorAll("input:checked")];
+  return allBridges.filter(b => checked.some(c => c.value === b.id));
+}
+
+/* ===== RENDER BẢNG ===== */
+function renderTable(bridges) {
+  if (bridges.length < 2) {
+    document.getElementById("compareTable").innerHTML =
+      "<tr><td>⚠️ Chọn ít nhất 2 cây cầu để so sánh</td></tr>";
+    return;
+  }
+
+  let html = `<tr><th>Tên cầu</th>`;
+  bridges.forEach(b => html += `<th>${b.name}</th>`);
+  html += `</tr>`;
+
+  html += `<tr><td>Chiều dài (m)</td>`;
+  bridges.forEach(b => html += `<td>${b.length.toLocaleString()}</td>`);
+  html += `</tr>`;
+
+  html += `<tr><td>Tổng chi phí (tỷ VNĐ)</td>`;
+  bridges.forEach(b => html += `<td>${b.cost.toLocaleString()}</td>`);
+  html += `</tr>`;
+
+  html += `<tr><td>Năm hoàn thành</td>`;
+  bridges.forEach(b => html += `<td>${b.year}</td>`);
+  html += `</tr>`;
+
+  html += `<tr><td>Loại cầu</td>`;
+  bridges.forEach(b => html += `<td>${b.type}</td>`);
+  html += `</tr>`;
+
+  document.getElementById("compareTable").innerHTML = html;
+}
+
+
+/* ===== BIỂU ĐỒ ===== */
+function renderCharts(bridges) {
+  if (lengthChart) lengthChart.destroy();
+  if (yearChart) yearChart.destroy();
+
+  if (bridges.length < 2) return;
+
+  lengthChart = new Chart(document.getElementById("lengthChart"), {
+    type: "bar",
+    data: {
+      labels: bridges.map(b => b.name),
+      datasets: [{
+        data: bridges.map(b => b.length),
+        backgroundColor: "#a6c1ee",
+        borderRadius: 8
+      }]
+      
+    },
+    options: { plugins: { legend: { display: false } } }
+  });
+  
+  yearChart = new Chart(document.getElementById("yearChart"), {
+    type: "bar",
+    data: {
+      labels: bridges.map(b => b.name),
+      datasets: [{
+        data: bridges.map(b => b.year),
+        backgroundColor: "#fbc2eb",
+        borderRadius: 8
+      }]
+    },
+    options: {
+      scales: {
+        y: { min: 1995, max: 2025, ticks: { stepSize: 5 } }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+}
+
+/* ===== PHÂN TÍCH THÔNG MINH ===== */
+function renderAnalysis(bridges) {
+  if (bridges.length < 1) return;
+
+  const longest = bridges.reduce((a,b)=>a.length>b.length?a:b);
+  const newest = bridges.reduce((a,b)=>a.year>b.year?a:b);
+
+  document.getElementById("longestBridge").innerHTML =
+    "🏆 <strong>Cầu dài nhất:</strong> " + longest.name;
+
+  document.getElementById("newestBridge").innerHTML =
+    "🆕 <strong>Cầu mới nhất:</strong> " + newest.name;
+}
+
+/* ===== UPDATE KHI CLICK ===== */
+selector.addEventListener("change", () => {
+  const selected = getSelectedBridges();
+  renderTable(selected);
+  renderCharts(selected);
+  renderAnalysis(selected);
+});
+
+/* LOAD BAN ĐẦU */
+const init = getSelectedBridges();
+renderTable(init);
+renderCharts(init);
+renderAnalysis(init);
+
+});
+</script>
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+}
+
+window.onload = function () {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+};
+</script>
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+</div>
+<script>
+function openLightbox(img) {
+  document.getElementById("lightbox-img").src = img.src;
+  document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
+  </script>
+  
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<footer class="main-footer">
+  <p>© 2025 | Dự án Website nhóm 9 lớp 12D1 – Chủ đề 4 | Cây cầu nổi tiếng</p>
+</footer>
+<script>
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.querySelector(".music-toggle");
+
+// LẤY TRẠNG THÁI CŨ
+let musicOn = localStorage.getItem("music") !== "off";
+
+// KHỞI ĐỘNG
+window.addEventListener("load", () => {
+  if (musicOn) {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(()=>{});
+  } else {
+    musicBtn.classList.add("off");
+    musicBtn.textContent = "🔇 ";
+  }
+});
+
+// BẬT / TẮT
+function toggleMusic() {
+  musicOn = !musicOn;
+  if (musicOn) {
+    bgMusic.play();
+    musicBtn.textContent = "🎵";
+    musicBtn.classList.remove("off");
+    localStorage.setItem("music", "on");
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+    musicBtn.classList.add("off");
+    localStorage.setItem("music", "off");
+  }
+}
+</script>
+
+</body>
+</html>
