@@ -935,31 +935,11 @@ body.dark .music-toggle {
   box-shadow: 0 6px 18px rgba(255,255,255,0.15);
 }
 
-@media (max-width:768px){
-  .quiz-box{
-    padding:20px;
-    max-width:95%;
-  }
-}
-@media (max-width: 768px) {
 
-  body {
-    font-size: 14px;
-  }
 
-  .container {
-    padding: 12px;
-  }
 
-  .menu {
-    flex-direction: column;
-  }
 
-  .box {
-    width: 100%;
-    margin-bottom: 12px;
-  }
-}
+
 /* VIDEO EMBED */
 .video-section {
   width: 100%;
